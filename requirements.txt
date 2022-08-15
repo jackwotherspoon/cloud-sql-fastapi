@@ -1,2 +1,5 @@
 fastapi==0.79.0
 uvicorn==0.18.2
+cloud-sql-python-connector==0.8.0
+pg8000==1.29.1
+SQLAlchemy==1.4.40
