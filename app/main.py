@@ -1,15 +1,26 @@
 from typing import List
-from datetime import datetime, timezone
 
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
+from fastapi import Depends, FastAPI, HTTPException, Form, Request
+from fastapi.templating import Jinja2Templates
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
-from . import models, schemas
+from . import models, schemas, crud
 from .database import SessionLocal, engine
 
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+    allow_credentials=True,
+)
+templates = Jinja2Templates(directory="templates")
 
 # Dependency
 def get_db():
@@ -19,24 +30,22 @@ def get_db():
     finally:
         db.close()
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+
+@app.get("/", response_class=HTMLResponse)
+def home_page(request: Request, db: Session = Depends(get_db)):
+    tab_count = crud.get_vote_count(db, "TABS")
+    space_count = crud.get_vote_count(db, "SPACES")
+    votes = crud.get_recent_votes(db)
+    return templates.TemplateResponse("index.html", {"request": request, "tab_count": tab_count, "space_count": space_count, "recent_votes": votes})
 
 
 @app.get("/votes", response_model=List[schemas.Vote])
-def get_votes(db: Session = Depends(get_db)):
-    return db.query(models.Vote).all()
+def get_votes(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+    return crud.get_recent_votes(db, skip=skip, limit=limit)
 
 
 @app.post("/votes", response_model=schemas.Vote)
-def create_vote(vote: schemas.VoteCreate, db: Session = Depends(get_db)):
-    # convert to lowercase to allow for 'TABS' or 'tabs"
-    candidate = vote.candidate.lower()
-    if candidate != "spaces" and candidate != "tabs":
+def create_vote(candidate: str = Form(), db: Session = Depends(get_db)):
+    if candidate != "SPACES" and candidate != "TABS":
         raise HTTPException(status_code=400, detail="Invalid team specified. Should be one of 'TABS' or 'SPACES'")
-    new_vote = models.Vote(time_cast=datetime.now(tz=timezone.utc), candidate=candidate)
-    db.add(new_vote)
-    db.commit()
-    db.refresh(new_vote)
-    return new_vote
+    return crud.create_vote(db, candidate)
