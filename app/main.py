@@ -3,7 +3,6 @@ from typing import List
 from fastapi.responses import HTMLResponse
 from fastapi import Depends, FastAPI, HTTPException, Form, Request
 from fastapi.templating import Jinja2Templates
-from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
 from . import models, schemas, crud
@@ -13,13 +12,6 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-    allow_credentials=True,
-)
 templates = Jinja2Templates(directory="templates")
 
 # Dependency
