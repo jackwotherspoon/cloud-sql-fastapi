@@ -39,5 +39,5 @@ def get_votes(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
 @app.post("/votes", response_model=schemas.Vote)
 def create_vote(candidate: str = Form(), db: Session = Depends(get_db)):
     if candidate != "SPACES" and candidate != "TABS":
-        raise HTTPException(status_code=400, detail="Invalid team specified. Should be one of 'TABS' or 'SPACES'")
+        raise HTTPException(status_code=400, detail="Invalid candidate specified. Should be one of 'TABS' or 'SPACES'")
     return crud.create_vote(db, candidate)
