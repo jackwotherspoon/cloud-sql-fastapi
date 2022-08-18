@@ -11,7 +11,7 @@ gcloud builds submit --tag gcr.io/[YOUR_PROJECT_ID]/cloud-sql-fastapi
 
 2. Deploy the service to Cloud Run:
 ```sh
-gcloud run deploy cloud-sql-fastapi --image gcr.io/[YOUR_PROJECT_ID]/cloud-sql-fastapi \
+gcloud run deploy cloud-sql-fastapi --image gcr.io/<PROJECT_ID>/cloud-sql-fastapi \
   --set-env-vars INSTANCE_CONNECTION_NAME='<PROJECT-ID>:<INSTANCE-REGION>:<INSTANCE-NAME>' \
   --set-env-vars DB_USER='<YOUR_DB_USER_NAME>' \
   --set-env-vars DB_PASS='<YOUR_DB_PASSWORD>' \
