@@ -54,8 +54,10 @@ It helps a lot during development, but you shouldn't use it in production.
 The application can be deployed to [Cloud Run](https://cloud.google.com/run) through the following steps:
 
 1. Build the container image
+
+Replace `<PROJECT_ID>` with your Google Cloud Project ID.
 ```sh
-gcloud builds submit --tag gcr.io/[YOUR_PROJECT_ID]/cloud-sql-fastapi
+gcloud builds submit --tag gcr.io/<PROJECT_ID>/cloud-sql-fastapi
 ```
 
 2. Deploy the service to Cloud Run
