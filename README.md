@@ -3,15 +3,18 @@ A sample web application built using [FastAPI](https://fastapi.tiangolo.com/) co
 
 ## Before you begin
 1. Create a Cloud SQL Instance by following these 
-[instructions](https://cloud.google.com/sql/docs/postgres/create-instance). Note the connection 
-string, database user, and database password that you create.
+[instructions](https://cloud.google.com/sql/docs/postgres/create-instance). 
+
+Note the connection string, database user, and database password that you create.
 
 2. Create a database for your application by following these 
-[instructions](https://cloud.google.com/sql/docs/postgres/create-manage-databases). Note the database
-name. 
+[instructions](https://cloud.google.com/sql/docs/postgres/create-manage-databases). 
+
+Note the database name. 
 
 3. Create a service account with the 'Cloud SQL Client' IAM role by following these 
 [instructions](https://cloud.google.com/sql/docs/postgres/connect-external-app#4_if_required_by_your_authentication_method_create_a_service_account).
+
 Download the JSON key for the service account to authenticate your connection.
 
 ## Running locally
