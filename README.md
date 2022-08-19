@@ -66,7 +66,7 @@ instance configuration as well as service account email of previously created se
 ```sh
 gcloud run deploy cloud-sql-fastapi --image gcr.io/<PROJECT_ID>/cloud-sql-fastapi \
   --service-account='<SERVICE_ACCOUNT_EMAIL>' \
-  --set-env-vars INSTANCE_CONNECTION_NAME='<PROJECT-ID>:<INSTANCE-REGION>:<INSTANCE-NAME>' \
+  --set-env-vars INSTANCE_CONNECTION_NAME='<PROJECT_ID>:<INSTANCE_REGION>:<INSTANCE_NAME>' \
   --set-env-vars DB_USER='<YOUR_DB_USER_NAME>' \
   --set-env-vars DB_PASS='<YOUR_DB_PASSWORD>' \
   --set-env-vars DB_NAME='<YOUR_DB_NAME>'
@@ -74,3 +74,30 @@ gcloud run deploy cloud-sql-fastapi --image gcr.io/<PROJECT_ID>/cloud-sql-fastap
 
 Take note of the URL output at the end of the deployment process.
 This is the endpoint for your FastAPI application!
+
+### Private IP Cloud SQL Connections
+The application can also be deployed to Cloud Run using Private IP Cloud SQL connections.
+Private IP allows your database to not be accessible from the public internet. 
+
+First make sure your Cloud SQL instance is configured to have a Private IP address.
+([Configure Private IP for Cloud SQL](https://cloud.google.com/sql/docs/postgres/configure-private-ip))
+
+Private IP Cloud SQL instance(s) should be connected to a [VPC Network](https://cloud.google.com/vpc/docs/using-vpc)
+which can be accessed securely via Cloud Run using [Serverless VPC Access](https://console.cloud.google.com/networking/connectors)
+which creates a VPC Connector.
+
+The VPC Connector can be attached to your Cloud Run service to allow Private IP
+connections to the Cloud SQL instance on the **same VPC Network**.
+
+```sh
+gcloud run deploy cloud-sql-fastapi --image gcr.io/<PROJECT_ID>/cloud-sql-fastapi \
+  --service-account='<SERVICE_ACCOUNT_EMAIL>' \
+  --vpc-connector='<VPC_CONNECTOR_NAME>' \
+  --set-env-vars INSTANCE_CONNECTION_NAME='<PROJECT_ID>:<INSTANCE_REGION>:<INSTANCE_NAME>' \
+  --set-env-vars DB_USER='<YOUR_DB_USER_NAME>' \
+  --set-env-vars DB_PASS='<YOUR_DB_PASSWORD>' \
+  --set-env-vars DB_NAME='<YOUR_DB_NAME>' \
+  --set-env-vars PRIVATE_IP=True
+```
+
+The application is now deployed using Private IP database connections!
