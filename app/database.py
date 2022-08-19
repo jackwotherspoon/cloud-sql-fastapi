@@ -3,15 +3,17 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from google.cloud.sql.connector import Connector
+from google.cloud.sql.connector import Connector, IPTypes
 
 # load env vars
 load_dotenv()
 
 # Cloud SQL Python Connector creator function
 def getconn():
+    # if env var PRIVATE_IP is set to True, use private IP Cloud SQL connections
+    ip_type = IPTypes.PRIVATE if os.getenv("PRIVATE_IP") == True else IPTypes.PUBLIC
     # initialize Cloud SQL Python connector object
-    with Connector() as connector:
+    with Connector(ip_type=ip_type) as connector:
         conn = connector.connect(
             os.getenv('INSTANCE_CONNECTION_NAME'),
             "pg8000",
