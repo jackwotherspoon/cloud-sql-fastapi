@@ -1,6 +1,10 @@
 # cloud-sql-fastapi
 A sample web application built using [FastAPI](https://fastapi.tiangolo.com/) connected to Cloud SQL (via the [Cloud SQL Python Connector](https://github.com/GoogleCloudPlatform/cloud-sql-python-connector)).
 
+<p align="center">
+    <img src="docs/images/tabs-vs-spaces.png" alt="tabs-vs-spaces application">
+</p>
+
 ## Before you begin
 1. Create a Cloud SQL Instance by following these 
 [instructions](https://cloud.google.com/sql/docs/postgres/create-instance). 
