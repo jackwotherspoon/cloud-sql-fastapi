@@ -2,7 +2,7 @@
 A sample web application built using [FastAPI](https://fastapi.tiangolo.com/) connected to Cloud SQL (via the [Cloud SQL Python Connector](https://github.com/GoogleCloudPlatform/cloud-sql-python-connector)).
 
 <p align="center">
-    <img src="docs/images/tabs-vs-spaces.png" alt="tabs-vs-spaces application">
+    <img src="https://raw.githubusercontent.com/jackwotherspoon/cloud-sql-fastapi/main/docs/images/tabs-vs-spaces.png" alt="tabs-vs-spaces application">
 </p>
 
 ## Before you begin
@@ -16,7 +16,7 @@ Note the connection string, database user, and database password that you create
 
 Note the database name. 
 
-3. Create a service account with the 'Cloud SQL Client' IAM role by following these 
+3. Create a service account with the __Cloud SQL Client__ IAM role by following these 
 [instructions](https://cloud.google.com/sql/docs/postgres/connect-external-app#4_if_required_by_your_authentication_method_create_a_service_account).
 
 Download the JSON key for the service account to authenticate your connection.
