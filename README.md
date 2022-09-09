@@ -5,7 +5,7 @@ Sample web applications built using [FastAPI](https://fastapi.tiangolo.com/) tha
 A voting web application that aims to settle the age old programming debate, should you use Tabs or Spaces?
 
 <p align="center">
-    <img src="docs/images/tabs-vs-spaces.png" alt="tabs-vs-spaces application">
+    <img src="https://raw.githubusercontent.com/jackwotherspoon/cloud-sql-fastapi/main/docs/images/tabs-vs-spaces.png" alt="tabs-vs-spaces application">
 </p>
 
 This tutorial is great for beginners and includes the following:
