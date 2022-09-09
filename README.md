@@ -1,7 +1,7 @@
 # cloud-sql-fastapi
 Sample web applications built using [FastAPI](https://fastapi.tiangolo.com/) that integrate Google's Cloud SQL databases (via the [Cloud SQL Python Connector](https://github.com/GoogleCloudPlatform/cloud-sql-python-connector)).
 
-## :bar_chart: :computer: [Tabs vs Spaces](tabs-vs-spaces/README.md) (Beginner)
+## :bar_chart: :computer: Tabs vs Spaces (Beginner, [README]((tabs-vs-spaces/README.md)))
 A voting web application that aims to settle the age old programming debate, should you use Tabs or Spaces?
 
 <p align="center">

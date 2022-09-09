@@ -1,4 +1,4 @@
-# :bar_chart: :computer: [Tabs vs Spaces](tabs-vs-spaces/README.md) (Beginner)
+# :bar_chart: :computer: Tabs vs Spaces (Beginner)
 A voting web application that aims to settle the age old programming debate, should you use Tabs or Spaces?
 
 <p align="center">
