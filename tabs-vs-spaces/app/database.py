@@ -8,10 +8,11 @@ from google.cloud.sql.connector import Connector, IPTypes
 # load env vars
 load_dotenv()
 
+
 # Cloud SQL Python Connector creator function
 def getconn():
     # if env var PRIVATE_IP is set to True, use private IP Cloud SQL connections
-    ip_type = IPTypes.PRIVATE if os.getenv("PRIVATE_IP") == True else IPTypes.PUBLIC
+    ip_type = IPTypes.PRIVATE if os.getenv("PRIVATE_IP") is True else IPTypes.PUBLIC
     # if env var DB_IAM_USER is set, use IAM database authentication
     user, enable_iam_auth = (
         (os.getenv("DB_IAM_USER"), True)

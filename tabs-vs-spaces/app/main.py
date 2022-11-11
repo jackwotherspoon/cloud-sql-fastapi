@@ -29,16 +29,6 @@ def home_page(request: Request, db: Session = Depends(get_db)):
     tab_count = crud.get_vote_count(db, "TABS")
     space_count = crud.get_vote_count(db, "SPACES")
     votes = crud.get_recent_votes(db)
-    response = templates.TemplateResponse(
-        "index.html",
-        {
-            "request": request,
-            "tab_count": tab_count,
-            "space_count": space_count,
-            "recent_votes": votes,
-        },
-    )
-    print("Template type: ", type(response))
     return templates.TemplateResponse(
         "index.html",
         {
