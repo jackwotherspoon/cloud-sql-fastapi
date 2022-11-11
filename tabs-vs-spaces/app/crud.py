@@ -7,7 +7,13 @@ from . import models
 
 
 def get_recent_votes(db: Session, skip: int = 0, limit: int = 5):
-    return db.query(models.Vote).order_by(desc("time_cast")).offset(skip).limit(limit).all()
+    return (
+        db.query(models.Vote)
+        .order_by(desc("time_cast"))
+        .offset(skip)
+        .limit(limit)
+        .all()
+    )
 
 
 def get_vote_count(db: Session, candidate: str):
