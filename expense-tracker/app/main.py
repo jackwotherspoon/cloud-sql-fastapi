@@ -1,6 +1,6 @@
 from typing import List
 
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, Response, status
 from sqlalchemy.orm import Session
 
 from . import models, schemas, crud
@@ -33,3 +33,9 @@ def get_expense(expense_id: int, db: Session = Depends(get_db)):
 @app.post("/expenses/", response_model=schemas.Expense)
 def create_expense(expense: schemas.ExpenseCreate, db: Session = Depends(get_db)):
     return crud.create_expense(db=db, expense=expense)
+
+
+@app.delete("/expenses/{expense_id}", response_class=Response)
+def delete_expense(expense_id: int, db: Session = Depends(get_db)):
+    crud.delete_expense(db, expense_id)
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
