@@ -21,12 +21,12 @@ def get_db():
 
 
 @app.get("/expenses/", response_model=List[schemas.Expense])
-def get_expenses(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+def read_expenses(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     return crud.get_expenses(db, skip=skip, limit=limit)
 
 
 @app.get("/expenses/{expense_id}", response_model=schemas.Expense)
-def get_expense(expense_id: int, db: Session = Depends(get_db)):
+def read_expense(expense_id: int, db: Session = Depends(get_db)):
     return crud.get_exepense_by_id(db, expense_id)
 
 
