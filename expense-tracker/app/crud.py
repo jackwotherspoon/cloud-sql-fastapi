@@ -30,3 +30,9 @@ def create_expense(db: Session, expense: schemas.ExpenseCreate):
     db.commit()
     db.refresh(new_expense)
     return new_expense
+
+
+def delete_expense(db: Session, expense_id: int):
+    db.query(models.Expense).filter(models.Expense.expense_id == expense_id).delete()
+    db.commit()
+    return
