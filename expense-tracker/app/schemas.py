@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Optional
 
 from datetime import datetime
 from pydantic import BaseModel
@@ -12,6 +12,12 @@ class ExpenseBase(BaseModel):
 
 class ExpenseCreate(ExpenseBase):
     pass
+
+
+class ExpenseUpdate(BaseModel):
+    cost: Optional[float] = None
+    description: Optional[str] = None
+    category: Optional[str] = None
 
 
 class Expense(ExpenseBase):

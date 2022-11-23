@@ -32,6 +32,21 @@ def create_expense(db: Session, expense: schemas.ExpenseCreate):
     return new_expense
 
 
+def update_expense(
+    db: Session, expense_id: int, expense_partial: schemas.ExpenseUpdate
+):
+    expense = (
+        db.query(models.Expense).filter(models.Expense.expense_id == expense_id).first()
+    )
+    expense_data = expense_partial.dict(exclude_unset=True)
+    for key, value in expense_data.items():
+        setattr(expense, key, value)
+    db.add(expense)
+    db.commit()
+    db.refresh(expense)
+    return expense
+
+
 def delete_expense(db: Session, expense_id: int):
     db.query(models.Expense).filter(models.Expense.expense_id == expense_id).delete()
     db.commit()
