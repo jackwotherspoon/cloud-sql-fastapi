@@ -35,6 +35,15 @@ def create_expense(expense: schemas.ExpenseCreate, db: Session = Depends(get_db)
     return crud.create_expense(db=db, expense=expense)
 
 
+@app.patch("/expenses/{expense_id}", response_model=schemas.Expense)
+def update_expense(
+    expense_id: int,
+    expense_partial: schemas.ExpenseUpdate,
+    db: Session = Depends(get_db),
+):
+    return crud.update_expense(db, expense_id, expense_partial)
+
+
 @app.delete("/expenses/{expense_id}", response_class=Response)
 def delete_expense(expense_id: int, db: Session = Depends(get_db)):
     crud.delete_expense(db, expense_id)
