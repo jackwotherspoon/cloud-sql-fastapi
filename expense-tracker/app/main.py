@@ -27,7 +27,7 @@ def read_expenses(skip: int = 0, limit: int = 10, db: Session = Depends(get_db))
 
 @app.get("/expenses/{expense_id}", response_model=schemas.Expense)
 def read_expense(expense_id: int, db: Session = Depends(get_db)):
-    return crud.get_exepense_by_id(db, expense_id)
+    return crud.get_expense_by_id(db, expense_id)
 
 
 @app.post("/expenses/", response_model=schemas.Expense)
