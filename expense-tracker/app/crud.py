@@ -16,7 +16,7 @@ def get_expenses(db: Session, skip: int = 0, limit: int = 10):
     )
 
 
-def get_exepense_by_id(db: Session, expense_id: int):
+def get_expense_by_id(db: Session, expense_id: int):
     return (
         db.query(models.Expense).filter(models.Expense.expense_id == expense_id).first()
     )
