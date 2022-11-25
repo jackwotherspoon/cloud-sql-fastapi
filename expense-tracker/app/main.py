@@ -1,5 +1,4 @@
-from email.policy import HTTP
-from typing import List, Union
+from typing import List
 
 from fastapi import Depends, FastAPI, Response, status, HTTPException
 from sqlalchemy.orm import Session
