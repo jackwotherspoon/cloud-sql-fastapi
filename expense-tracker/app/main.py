@@ -1,6 +1,7 @@
-from typing import List
+from email.policy import HTTP
+from typing import List, Union
 
-from fastapi import Depends, FastAPI, Response, status
+from fastapi import Depends, FastAPI, Response, status, HTTPException
 from sqlalchemy.orm import Session
 
 from . import models, schemas, crud
@@ -27,7 +28,10 @@ def read_expenses(skip: int = 0, limit: int = 10, db: Session = Depends(get_db))
 
 @app.get("/expenses/{expense_id}", response_model=schemas.Expense)
 def read_expense(expense_id: int, db: Session = Depends(get_db)):
-    return crud.get_expense_by_id(db, expense_id)
+    expense = crud.get_expense_by_id(db, expense_id)
+    if expense is None:
+        raise HTTPException(status_code=404, detail="Expense not found")
+    return expense
 
 
 @app.post("/expenses/", response_model=schemas.Expense)
