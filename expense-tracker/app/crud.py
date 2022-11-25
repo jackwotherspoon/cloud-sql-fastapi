@@ -1,5 +1,6 @@
 from datetime import datetime, timezone
 
+from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import desc
 
@@ -48,6 +49,13 @@ def update_expense(
 
 
 def delete_expense(db: Session, expense_id: int):
-    db.query(models.Expense).filter(models.Expense.expense_id == expense_id).delete()
-    db.commit()
-    return
+    expense = (
+        db.query(models.Expense).filter(models.Expense.expense_id == expense_id).first()
+    )
+    if expense:
+        db.delete(expense)
+        db.commit()
+    else:
+        raise HTTPException(
+            status_code=404, detail=f"Expense not found with ID {expense_id}"
+        )
