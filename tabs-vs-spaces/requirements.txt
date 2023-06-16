@@ -2,6 +2,7 @@ fastapi==0.97.0
 uvicorn==0.22.0
 cloud-sql-python-connector==1.2.4
 pg8000==1.29.6
+SQLAlchemy==2.0.16
 python-dotenv==0.20.0
 Jinja2==3.1.2
 python-multipart==0.0.5
