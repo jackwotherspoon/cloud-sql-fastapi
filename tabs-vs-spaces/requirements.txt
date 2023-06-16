@@ -1,8 +1,8 @@
-fastapi==0.87.0
-uvicorn==0.20.0
-cloud-sql-python-connector==0.9.3
-pg8000==1.29.3
-SQLAlchemy==1.4.44
+fastapi==0.97.0
+uvicorn==0.22.0
+cloud-sql-python-connector==1.2.4
+pg8000==1.29.6
+SQLAlchemy==2.0.16
 python-dotenv==0.20.0
 Jinja2==3.1.2
 python-multipart==0.0.5
