@@ -40,23 +40,26 @@ Download the JSON key for the service account to authenticate your connection fo
 To deploy the application locally on your machine:
 
 1. Install the dependencies
-```sh
-pip install -r requirements.txt
-```
+
+    ```sh
+    pip install -r requirements.txt
+    ```
 
 1. Fill in the `.env` file with your Cloud SQL specific values and path to service account JSON key.
-```
-INSTANCE_CONNECTION_NAME="project-id:region:instance-name"
-DB_USER="my-db-user"
-DB_PASS="my-db-pass"
-DB_NAME="my-database"
-GOOGLE_APPLICATION_CREDENTIALS="path/to/keys.json"
-```
+
+    ```
+    INSTANCE_CONNECTION_NAME="project-id:region:instance-name"
+    DB_USER="my-db-user"
+    DB_PASS="my-db-pass"
+    DB_NAME="my-database"
+    GOOGLE_APPLICATION_CREDENTIALS="path/to/keys.json"
+    ```
 
 1. Run the application
-```sh
-uvicorn app.main:app --reload
-```
+
+    ```sh
+    uvicorn app.main:app --reload
+    ```
 
 The application is now running locally! Point your web browser at http://127.0.0.1:8000/docs to view the OpenAPI specs for it and to play around with making requests.
 
