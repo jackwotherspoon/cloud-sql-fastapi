@@ -18,7 +18,8 @@ def init_connection_engine(connector: Connector) -> Engine:
         (os.getenv("DB_IAM_USER"), True)
         if os.getenv("DB_IAM_USER")
         else (os.getenv("DB_USER"), False)
-    ) 
+    )
+
     # Cloud SQL Python Connector creator function
     def getconn():
         conn = connector.connect(
@@ -31,11 +32,12 @@ def init_connection_engine(connector: Connector) -> Engine:
             enable_iam_auth=enable_iam_auth,
         )
         return conn
-    
+
     SQLALCHEMY_DATABASE_URL = "postgresql+pg8000://"
 
     engine = create_engine(SQLALCHEMY_DATABASE_URL, creator=getconn)
     return engine
+
 
 # initialize Python Connector and connection pool engine
 connector = Connector()
