@@ -9,6 +9,8 @@ A voting web application that aims to settle the age old programming debate, sho
     <img src="https://raw.githubusercontent.com/jackwotherspoon/cloud-sql-fastapi/main/docs/images/tabs-vs-spaces.png" alt="tabs-vs-spaces application">
 </p>
 
+Update your `\_\_init\_\_.py` file:
+
 This tutorial is great for beginners and includes the following:
 - Integrates a Cloud SQL database with FastAPI ([Cloud SQL Python Connector](https://github.com/GoogleCloudPlatform/cloud-sql-python-connector) + [SQLAlchemy](https://www.sqlalchemy.org/))
 - FastAPI application database best practices (`database.py`, `models.py`, `schemas.py`)
